@@ -1,0 +1,29 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url(../fonts/Roboto-Medium.ttf);
+}
+
+body {
+    /**background-image: url(../images/background.jpg);**/
+    background-color: #e0e0e0;
+}
+
+body header a#tituloLogin {
+    font-family: roboto;
+}
+
+body section div.section {
+    padding-top: 4%;
+}
+
+body section form div.row button#login {
+    border-radius: 34px 34px 34px 34px;
+    -moz-border-radius: 34px 34px 34px 34px;
+    -webkit-border-radius: 34px 34px 34px 34px;
+    border: 0px solid #000000;
+}
