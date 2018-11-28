@@ -56,7 +56,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper blue darken-4">
-                    <a href="#!" class="brand-logo center col s4" id="tituloLogin">Gráfica Gestor de Accesos</a>
+                    <a href="#!" class="brand-logo center col s4" id="tituloLogin">Reporte Gestor de Accesos</a>
                     <a href="#" data-target="menu-side" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
             </nav>
         </div>
@@ -120,7 +120,127 @@
         </ul>
     </header>
     
-    <!-- Se crea contenido de la página->
+    <!-- Se crea contenido de la página-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card hoverable">
+                        <div class="card-panel">
+                            <div class="row">
+                                <div class="col s6">
+                                    <h5>Cuentas sin uso (30 días)</h5>
+                                </div>    
+                            
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">search</i>
+                                    <input type="text" name="" id="buscar" class="autocomplete">
+                                    <label for="buscar">Buscar...</label>
+                                </div>
+                            </div>
+                             <li class="divider"></li>
+                            <div class="row">
+                                <table class="bordered highlight centered responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nomre de usuario</th>
+                                            <th>Nombre completo</th>
+                                            <th>Organización</th>
+                                            <th>Ultima sesión</th>
+                                            <th>Días sin accesos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                           <div class="row">
+                               <ul class="pagination center">
+                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                    <li class="active"><a href="#!">1</a></li>
+                                    <li class="waves-effect"><a href="#!">2</a></li>
+                                    <li class="waves-effect"><a href="#!">3</a></li>
+                                    <li class="waves-effect"><a href="#!">4</a></li>
+                                    <li class="waves-effect"><a href="#!">5</a></li>
+                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                               </ul>
+                           </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <!--Se importa las librerias JS-->    
 <script type="text/javascript" src="js/materialize.min.js"></script>

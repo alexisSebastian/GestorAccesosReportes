@@ -8,6 +8,11 @@
     src: url(../fonts/Roboto-Medium.ttf);
 }
 
+@font-face {
+    font-display: 'robotoM';
+    src: url(../fonts/Roboto-Black.ttf);
+}
+
 body {
     /**background-image: url(../images/background.jpg);**/
     background-color: #e0e0e0;
@@ -26,4 +31,8 @@ body section form div.row button#login {
     -moz-border-radius: 34px 34px 34px 34px;
     -webkit-border-radius: 34px 34px 34px 34px;
     border: 0px solid #000000;
+}
+
+body section h5 {
+    font-family: roboto;
 }
