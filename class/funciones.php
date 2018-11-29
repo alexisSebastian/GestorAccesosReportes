@@ -140,17 +140,12 @@ function distribucionUsuariosDia(){
     include 'connection.php';
 
     try {
-        $result = $conn->query("SELECT organization,  count(*) as sesiones
+        return $conn->query("SELECT organization,  count(*) as sesiones
         FROM guacamole_db.guacamole_user a left join  guacamole_db.guacamole_user_history b
         on a.username = b.username
         where start_date >= current_date() and organization not in ('CNS SISTEMAS','CNS Sistemas') and organization is not NULL
         group by organization");
-
-        $data = array();
-            foreach ($result as $row){
-                $data[] = $row; 
-            }
-        print json_encode($data);   
+   
 
     } catch (Exception $e) {
         echo "Error!!" . $e->getMessage() . "<br>";
