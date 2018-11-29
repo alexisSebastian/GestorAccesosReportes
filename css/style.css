@@ -36,3 +36,10 @@ body section form div.row button#login {
 body section h5 {
     font-family: roboto;
 }
+
+body section div.row div#piechart_3d {
+    width: 60%;
+    height: 400px;
+    margin-left: 20%;
+    margin-bottom: -3%
+}

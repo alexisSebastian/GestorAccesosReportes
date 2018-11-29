@@ -1,3 +1,10 @@
+<?php
+    include 'class/connection.php';
+    include 'class/funciones.php';
+
+    $res = distribucionUsuariosDia();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +63,7 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper blue darken-4">
-                    <a href="#!" class="brand-logo center col s12" id="tituloLogin">Reporte Gestor de Accesos</a>
+                    <a href="#!" class="brand-logo center col s12" id="tituloLogin">Gráfica Gestor de Accesos</a>
                     <a href="#" data-target="menu-side" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
             </nav>
         </div>
@@ -128,50 +135,14 @@
                     <div class="card hoverable">
                         <div class="card-panel">
                             <div class="row">
-                                <div class="col s6">
+                                <div class="col s12 center">
                                     <h5>Distribución de usuarios firmados del día</h5>
                                 </div>    
-                            
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" name="" id="buscar" class="autocomplete">
-                                    <label for="buscar">Buscar...</label>
-                                </div>
                             </div>
                              <li class="divider"></li>
                             <div class="row">
-                                <table class="bordered highlight centered responsive-table" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Nomre de usuario</th>
-                                            <th>Nombre completo</th>
-                                            <th>Organización</th>
-                                            <th>Ultima sesión</th>
-                                            <th>Días sin accesos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div id="piechart_3d"></div>
                             </div>
-                           <div class="row">
-                               <ul class="pagination center">
-                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                                    <li class="active"><a href="#!">1</a></li>
-                                    <li class="waves-effect"><a href="#!">2</a></li>
-                                    <li class="waves-effect"><a href="#!">3</a></li>
-                                    <li class="waves-effect"><a href="#!">4</a></li>
-                                    <li class="waves-effect"><a href="#!">5</a></li>
-                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                               </ul>
-                           </div> 
                         </div>
                     </div>
                 </div>
@@ -182,6 +153,7 @@
 <!--Se importa las librerias JS-->    
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/jquey.min.js"></script>
+<script type="text/javascript" src="js/loader.js"></script>
 <!--Se inicia el js para activar las funciones de materialize--> 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -190,6 +162,28 @@
     var instances = M.Sidenav.init(elems);
     var instances2 = M.Dropdown.init(elems1);
   });
+</script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['organization', 'sesions'],
+            <?php      
+                while ($fila = $res->fetch_assoc()) {
+                    echo "['".$fila['organization']."', ".$fila['sesiones']."],";
+                }
+            ?>
+        ]);
+
+        var options = {
+          title: '',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+    }
 </script>
 </body>
 </html>

@@ -22,7 +22,7 @@
 
     //se realiza calculo para la pginacion
     $iniciar = ($_GET['pagina']-1) * $registros_pag;
-    echo $iniciar;
+    //echo $iniciar;
 
 ?>
 

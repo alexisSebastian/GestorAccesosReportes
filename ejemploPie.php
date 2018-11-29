@@ -1,11 +1,8 @@
 <?php
-    
     include 'class/connection.php';
     include 'class/funciones.php';
 
-    $resultado =distribucionConexionesDia();
-    $numF = mysqli_fetch_array($resultado);
-    echo $numF;
+    $res = distribucionConexionesDia();
 ?>
 
 <html>
@@ -16,12 +13,21 @@
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Organizatio', 'Sessions'],
+          <?php  
+            
+            while ($fila = $res->fetch_assoc()) {
+              
+              echo "['".$fila['organization']."', ".$fila['sesiones']."],";
+
+            }
+            
+            // while ($filas = $conn->mysql_fetch_array()) {
+            //   echo $filas;
+            //   echo "['".$filas['organization']."', ".$filas['sesiones']."],";
+            // }
+
+          // ?>
         ]);
 
         var options = {
