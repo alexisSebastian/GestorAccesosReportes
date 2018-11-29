@@ -133,15 +133,9 @@
                     <div class="card hoverable">
                         <div class="card-panel">
                             <div class="row">
-                                <div class="col s6">
+                                <div class="col s12 center">
                                     <h5>Total de Usuarios firmados del día</h5>
-                                </div>    
-                            
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" name="" id="buscar" class="autocomplete">
-                                    <label for="buscar">Buscar...</label>
-                                </div>
+                                </div> 
                             </div>
                              <li class="divider"></li>
                             <div class="row">
@@ -164,17 +158,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                           <div class="row">
-                               <ul class="pagination center">
-                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                                    <li class="active"><a href="#!">1</a></li>
-                                    <li class="waves-effect"><a href="#!">2</a></li>
-                                    <li class="waves-effect"><a href="#!">3</a></li>
-                                    <li class="waves-effect"><a href="#!">4</a></li>
-                                    <li class="waves-effect"><a href="#!">5</a></li>
-                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                               </ul>
-                           </div> 
                         </div>
                     </div>
                 </div>

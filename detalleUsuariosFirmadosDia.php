@@ -157,7 +157,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $registros = totalConexionesDia();
+                                            $registros = detalleUsuariosFirmadosDia();
                                             
                                             if ($registros->num_rows) {
                                                 foreach ($registros as $registro){ ?>
