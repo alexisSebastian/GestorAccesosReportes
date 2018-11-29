@@ -1,29 +1,6 @@
 <?php
     include 'class/connection.php';
     include 'class/funciones.php';
-
-    //paginación
-    $registros_pag = 5;
-    //contar datos
-    $registros = obtenerCuentasSinUso();
-    $num_filas = mysqli_num_rows($registros);
-    //   echo $num_filas;
-    $paginas = $num_filas/5;
-    $paginas =ceil($paginas);
-    // echo $paginas;
-    
-    // if (!$_GET) {
-    //     header('Location:index.php?pagina=1');
-    // }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
-    //     header('Location:index.php?pagina=1');
-    // }
-
-    
-
-    //se realiza calculo para la pginacion
-    // $iniciar = ($_GET['pagina']-1) * $registros_pag;
-    // echo $iniciar;
-
 ?>
 
 <!DOCTYPE html>
@@ -187,7 +164,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 
 <!--Se importa las librerias JS-->    
 <script type="text/javascript" src="js/materialize.min.js"></script>

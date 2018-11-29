@@ -1,3 +1,8 @@
+<?php
+    include 'class/connection.php';
+    include 'class/funciones.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,21 +148,26 @@
                                 <table class="bordered highlight centered responsive-table" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Nomre de usuario</th>
-                                            <th>Nombre completo</th>
-                                            <th>Organización</th>
-                                            <th>Ultima sesión</th>
-                                            <th>Días sin accesos</th>
+                                            <th>Nombre de la conexión</th>
+                                            <th>Sesiones</th>
+                                            <th>Duración promedio</th>
+                                            <th>Total duración</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                            <td>registro</td>
-                                        </tr>
+                                        <?php
+                                            $registros = detalleConexionesDia();
+                                            
+                                            if ($registros->num_rows) {
+                                                foreach ($registros as $registro){ ?>
+                                                    <tr>
+                                                        <td><?php echo $registro['connection_name']?></td>
+                                                        <td><?php echo $registro['sesiones']?></td>
+                                                        <td><?php echo $registro['prom_duracion']?></td>
+                                                        <td><?php echo $registro['sum_duracion']?></td>
+                                                    </tr>
+                                        <?php   }
+                                            }?>
                                     </tbody>
                                 </table>
                             </div>
