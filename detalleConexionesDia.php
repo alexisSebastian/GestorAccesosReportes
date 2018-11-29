@@ -1,31 +1,3 @@
-<?php
-    include 'class/connection.php';
-    include 'class/funciones.php';
-
-    //paginación
-    $registros_pag = 5;
-    //contar datos
-    $registros = obtenerCuentasSinUso();
-    $num_filas = mysqli_num_rows($registros);
-    //   echo $num_filas;
-    $paginas = $num_filas/5;
-    $paginas =ceil($paginas);
-    // echo $paginas;
-    
-    if (!$_GET) {
-        header('Location:index.php?pagina=1');
-    }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
-        header('Location:index.php?pagina=1');
-    }
-
-    
-
-    //se realiza calculo para la pginacion
-    $iniciar = ($_GET['pagina']-1) * $registros_pag;
-    echo $iniciar;
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>    
+<body>
     <header>
         <!-- -------------Manú dropdown web-------------------- -->
         <ul id="dropdown1" class="dropdown-content">
@@ -69,7 +41,7 @@
         </ul>
 
         <ul id="dropdownM2" class="dropdown-content">
-            <li><a href="usuariosFirmadosDia.php">Total de Usuarios firmados del día</a></li>
+            <li><a href="totalUsuariosFirmadosDia.php">Total de Usuarios firmados del día</a></li>
             <li class="divider"></li>
             <li><a href="detalleUsuariosFirmadosDia.php">Detalle de usuarios firmados del día</a></li>
         </ul>
@@ -157,7 +129,7 @@
                         <div class="card-panel">
                             <div class="row">
                                 <div class="col s6">
-                                    <h5>Cuentas sin uso (30 días)</h5>
+                                    <h5>Detalle de conexiones del día</h5>
                                 </div>    
                             
                                 <div class="input-field col s6">
@@ -179,32 +151,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                            $registros = obtenerCuentasSinUsoPag();
-                                            
-                                            if ($registros->num_rows) {
-                                                foreach ($registros as $registro){ ?>
-                                                    <tr>
-                                                        <td><?php echo $registro['username']?></td>
-                                                        <td><?php echo $registro['full_name']?></td>
-                                                        <td><?php echo $registro['organization']?></td>
-                                                        <td><?php echo $registro['ultima_sesion']?></td>
-                                                        <td><?php echo $registro['dias_sin_acceso']?></td>
-                                                    </tr>
-                                        <?php   }
-                                            }?>
+                                        <tr>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                            <td>registro</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                            <div class="row">
                                <ul class="pagination center">
-                                    <li class="waves-effect <?php echo $_GET['pagina']<$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']-1 ?>"><i class="material-icons">chevron_left</i></a></li>
-                                    
-                                    <?php for($i = 0; $i < $paginas; $i++): ?>
-                                    <li class="waves-effect <?php echo $_GET['pagina'] == $i+1 ? 'active' : '' ?>"><a href="index.php?pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
-                                    <?php endfor ?>
-
-                                    <li class="waves-effect <?php echo $_GET['pagina']>$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']+1 ?>"><i class="material-icons">chevron_right</i></a></li>
+                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                    <li class="active"><a href="#!">1</a></li>
+                                    <li class="waves-effect"><a href="#!">2</a></li>
+                                    <li class="waves-effect"><a href="#!">3</a></li>
+                                    <li class="waves-effect"><a href="#!">4</a></li>
+                                    <li class="waves-effect"><a href="#!">5</a></li>
+                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                                </ul>
                            </div> 
                         </div>

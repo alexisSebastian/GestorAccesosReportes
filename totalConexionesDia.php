@@ -12,17 +12,17 @@
     $paginas =ceil($paginas);
     // echo $paginas;
     
-    if (!$_GET) {
-        header('Location:index.php?pagina=1');
-    }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
-        header('Location:index.php?pagina=1');
-    }
+    // if (!$_GET) {
+    //     header('Location:index.php?pagina=1');
+    // }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
+    //     header('Location:index.php?pagina=1');
+    // }
 
     
 
     //se realiza calculo para la pginacion
-    $iniciar = ($_GET['pagina']-1) * $registros_pag;
-    echo $iniciar;
+    // $iniciar = ($_GET['pagina']-1) * $registros_pag;
+    // echo $iniciar;
 
 ?>
 
@@ -40,7 +40,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>    
+<body>
     <header>
         <!-- -------------Manú dropdown web-------------------- -->
         <ul id="dropdown1" class="dropdown-content">
@@ -63,7 +63,7 @@
 
         <!-- -------------Menú dropdownMóbil------------------ -->
         <ul id="dropdownM1" class="dropdown-content">
-            <li><a href="totalConexionesDia.php">Total de Conexiones del día</a></li>
+            <li><a href="totalUsuariosFirmadosDia.php">Total de Conexiones del día</a></li>
             <li class="divider"></li>
             <li><a href="detalleConexionesDia.php">Detalle de conexiones del día</a></li>
         </ul>
@@ -156,57 +156,32 @@
                     <div class="card hoverable">
                         <div class="card-panel">
                             <div class="row">
-                                <div class="col s6">
-                                    <h5>Cuentas sin uso (30 días)</h5>
+                                <div class="col s12 center">
+                                    <h5>Total de Conexiones del día</h5>
                                 </div>    
-                            
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" name="" id="buscar" class="autocomplete">
-                                    <label for="buscar">Buscar...</label>
-                                </div>
                             </div>
                              <li class="divider"></li>
                             <div class="row">
                                 <table class="bordered highlight centered responsive-table" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Nomre de usuario</th>
-                                            <th>Nombre completo</th>
-                                            <th>Organización</th>
-                                            <th>Ultima sesión</th>
-                                            <th>Días sin accesos</th>
+                                            <th>Sesiones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $registros = obtenerCuentasSinUsoPag();
+                                            $registros = totalConexionesDia();
                                             
                                             if ($registros->num_rows) {
                                                 foreach ($registros as $registro){ ?>
                                                     <tr>
-                                                        <td><?php echo $registro['username']?></td>
-                                                        <td><?php echo $registro['full_name']?></td>
-                                                        <td><?php echo $registro['organization']?></td>
-                                                        <td><?php echo $registro['ultima_sesion']?></td>
-                                                        <td><?php echo $registro['dias_sin_acceso']?></td>
+                                                        <td><?php echo $registro['sesiones']?></td>
                                                     </tr>
                                         <?php   }
                                             }?>
                                     </tbody>
                                 </table>
                             </div>
-                           <div class="row">
-                               <ul class="pagination center">
-                                    <li class="waves-effect <?php echo $_GET['pagina']<$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']-1 ?>"><i class="material-icons">chevron_left</i></a></li>
-                                    
-                                    <?php for($i = 0; $i < $paginas; $i++): ?>
-                                    <li class="waves-effect <?php echo $_GET['pagina'] == $i+1 ? 'active' : '' ?>"><a href="index.php?pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
-                                    <?php endfor ?>
-
-                                    <li class="waves-effect <?php echo $_GET['pagina']>$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']+1 ?>"><i class="material-icons">chevron_right</i></a></li>
-                               </ul>
-                           </div> 
                         </div>
                     </div>
                 </div>
