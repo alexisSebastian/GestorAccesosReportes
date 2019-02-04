@@ -1,29 +1,6 @@
 <?php
     include 'class/connection.php';
     include 'class/funciones.php';
-
-    //paginación
-    $registros_pag = 30;
-    //contar datos
-    $registros = obtenerCuentasSinUso();
-    $num_filas = mysqli_num_rows($registros);
-    //   echo $num_filas;
-    $paginas = $num_filas/20;
-    $paginas =ceil($paginas);
-    // echo $paginas;
-    
-    if (!$_GET) {
-        header('Location:index.php?pagina=1');
-    }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
-        header('Location:index.php?pagina=1');
-    }
-
-    
-
-    //se realiza calculo para la pginacion
-    $iniciar = ($_GET['pagina']-1) * $registros_pag;
-    //echo $iniciar;
-
 ?>
 
 <!DOCTYPE html>
@@ -40,8 +17,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>    
-    <header>
+<body>
+
+<header>
         <!-- -------------Manú dropdown web-------------------- -->
         <ul id="dropdown1" class="dropdown-content">
             <li><a href="detalleUsuariosFirmadosDia.php">Detalle de usuarios firmados del día</a></li>
@@ -148,75 +126,64 @@
             <li><a href="#!" id="TextoPrin">Cerrar sesión</a></li>
             <li class="divider"></li>
         </ul> -->
-    </header>
+</header>
     
     <!-- Se crea contenido de la página-->
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <div class="card hoverable">
-                        <div class="card-panel">
-                            <div class="row">
-                                <div class="col s6">
-                                    <h5>Cuentas sin uso (30 días)</h5>
-                                </div>    
-                            
-                                <div class="input-field col s6">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" name="" id="buscar" class="autocomplete">
-                                    <label for="buscar">Buscar...</label>
-                                </div>
-                            </div>
-                             <li class="divider"></li>
-                            <div class="row">
-                                <table class="bordered highlight centered responsive-table" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Nomre de usuario</th>
-                                            <th>Nombre completo</th>
-                                            <th>Organización</th>
-                                            <th>Ultima sesión</th>
-                                            <th>Días sin accesos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $registros = obtenerCuentasSinUsoPag();
-                                            
-                                            if ($registros->num_rows) {
-                                                foreach ($registros as $registro){ ?>
-                                                    <tr>
-                                                        <td><?php echo $registro['username']?></td>
-                                                        <td><?php echo $registro['full_name']?></td>
-                                                        <td><?php echo $registro['organization']?></td>
-                                                        <td><?php echo $registro['ultima_sesion']?></td>
-                                                        <td><?php echo $registro['dias_sin_acceso']?></td>
-                                                    </tr>
-                                        <?php   }
-                                            }?>
-                                    </tbody>
-                                </table>
-                            </div>
-                           <div class="row">
-                               <ul class="pagination center">
-                                    <li class="waves-effect <?php echo $_GET['pagina']<$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']-1 ?>"><i class="material-icons">chevron_left</i></a></li>
-                                    
-                                    <?php for($i = 0; $i < $paginas; $i++): ?>
-                                    <li class="waves-effect <?php echo $_GET['pagina'] == $i+1 ? 'active' : '' ?>"><a href="index.php?pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
-                                    <?php endfor ?>
-
-                                    <li class="waves-effect <?php echo $_GET['pagina']>$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']+1 ?>"><i class="material-icons">chevron_right</i></a></li>
-                               </ul>
-                           </div> 
+    <div class ="container">
+        <div class="row s12">
+            <div class="col s6 ">
+                <h2 class="header">Total de Usuarios firmados del día</h2>
+                <div class="card horizontal hoverable">
+                    <div class="card-image">
+                        <i class="large material-icons prefix" style="color: black">assignment_ind</i>
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p>Total del conteo</p>
                         </div>
                     </div>
+                    <li class="divider"></li>
+                    <!-- <div class = "row">
+                    <table class="bordered highlight centered responsive-table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Usuarios Firmados</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    </div> -->
+                    
+                </div>
+            </div>
+
+            <div class="col s6">
+                <h2 class="header">Total de Conexiones del día</h2>
+                <div class="card horizontal hoverable">
+                    <div class="card-image">
+                        <i class="large material-icons prefix" style="color: black">wifi</i>
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                            <p>Total del conteo</p>
+                        </div>
+                    </div>
+                    <li class="divider"></li>
+                    <!-- <table class="bordered highlight centered responsive-table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Usuarios Firmados</th>
+                            </tr>
+                        </thead>
+                    </table> -->
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    
 
-<!--Se importa las librerias JS-->    
+
+
+    <!--Se importa las librerias JS-->    
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/jquey.min.js"></script>
 <!--Se inicia el js para activar las funciones de materialize--> 
