@@ -3,25 +3,25 @@
     include 'class/funciones.php';
 
     //paginación
-    $registros_pag = 30;
+    // $registros_pag = 30;
     //contar datos
     $registros = obtenerCuentasSinUso();
     $num_filas = mysqli_num_rows($registros);
     //   echo $num_filas;
-    $paginas = $num_filas/20;
-    $paginas =ceil($paginas);
+    // $paginas = $num_filas/20;
+    // $paginas =ceil($paginas);
     // echo $paginas;
     
-    if (!$_GET) {
-        header('Location:index.php?pagina=1');
-    }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
-        header('Location:index.php?pagina=1');
-    }
+    // if (!$_GET) {
+    //     header('Location:index.php?pagina=1');
+    // }elseif($_GET['pagina'] > $paginas || $_GET['pagina'] <= 0){
+    //     header('Location:index.php?pagina=1');
+    // }
 
     
 
     //se realiza calculo para la pginacion
-    $iniciar = ($_GET['pagina']-1) * $registros_pag;
+    //$iniciar = ($_GET['pagina']-1) * $registros_pag;
     //echo $iniciar;
 
 ?>
@@ -39,6 +39,10 @@
     <!--CDN de iconos google materialize-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/dataTables.material.min.js"></script>
 </head>
 <body>    
     <header>
@@ -170,7 +174,7 @@
                             </div>
                              <li class="divider"></li>
                             <div class="row">
-                                <table class="bordered highlight centered responsive-table" id="dataTable">
+                                <table class="bordered highlight centered responsive-table" id="myTable">
                                     <thead>
                                         <tr>
                                             <th>Nomre de usuario</th>
@@ -182,7 +186,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $registros = obtenerCuentasSinUsoPag();
+                                            $registros = obtenerCuentasSinUso();
                                             
                                             if ($registros->num_rows) {
                                                 foreach ($registros as $registro){ ?>
@@ -198,16 +202,16 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    $('#myTable').DataTable(  );
+                                });
+                            </script>
                            <div class="row">
-                               <ul class="pagination center">
-                                    <li class="waves-effect <?php echo $_GET['pagina']<$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']-1 ?>"><i class="material-icons">chevron_left</i></a></li>
-                                    
-                                    <?php for($i = 0; $i < $paginas; $i++): ?>
-                                    <li class="waves-effect <?php echo $_GET['pagina'] == $i+1 ? 'active' : '' ?>"><a href="index.php?pagina=<?php echo $i + 1 ?>"><?php echo $i + 1 ?></a></li>
-                                    <?php endfor ?>
-
-                                    <li class="waves-effect <?php echo $_GET['pagina']>$paginas?'disabled':'' ?>"><a href="index.php?pagina=<?php echo $_GET['pagina']+1 ?>"><i class="material-icons">chevron_right</i></a></li>
-                               </ul>
+                                <ul class="pagination">
+                                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                                 </ul>
                            </div> 
                         </div>
                     </div>
@@ -217,8 +221,7 @@
     </section>
 
 <!--Se importa las librerias JS-->    
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/jquey.min.js"></script>
+
 <!--Se inicia el js para activar las funciones de materialize--> 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -228,5 +231,6 @@
     var instances2 = M.Dropdown.init(elems1);
   });
 </script>
+
 </body>
 </html>

@@ -20,23 +20,23 @@ function obtenerCuentasSinUso(){
 }
 
 // consulta para paginacion
-function obtenerCuentasSinUsoPag(){
-    include 'connection.php';
+// function obtenerCuentasSinUsoPag(){
+//     include 'connection.php';
 
-    try {
-        return $conn->query("select a.username, full_name, organization, max(start_date) as ultima_sesion, datediff(current_date(),max(start_date)) as dias_sin_acceso
-        from guacamole_db.guacamole_connection_history  a left join guacamole_db.guacamole_user b
-        on a.username = b.username
-        where organization not in ('CNS SISTEMAS', 'Telmex') and organization is not NULL
-        group by a.username, full_name, organization
-        having datediff(current_date(),max(start_date)) >15
-        order by dias_sin_acceso desc LIMIT 0,5");
+//     try {
+//         return $conn->query("select a.username, full_name, organization, max(start_date) as ultima_sesion, datediff(current_date(),max(start_date)) as dias_sin_acceso
+//         from guacamole_db.guacamole_connection_history  a left join guacamole_db.guacamole_user b
+//         on a.username = b.username
+//         where organization not in ('CNS SISTEMAS', 'Telmex') and organization is not NULL
+//         group by a.username, full_name, organization
+//         having datediff(current_date(),max(start_date)) >15
+//         order by dias_sin_acceso desc LIMIT 0,5");
 
-    } catch (Exception $e) {
-        echo "Error!!" . $e->getMessage() . "<br>";
-        return false;
-    } 
-}
+//     } catch (Exception $e) {
+//         echo "Error!!" . $e->getMessage() . "<br>";
+//         return false;
+//     } 
+// }
 
 //--------------------------------------------------------------------------------------------------------
 
